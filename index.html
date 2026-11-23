@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#372337">
-  <meta name="description" content="SLAP ZAYNE UP! — a playful unofficial fan-made mini game">
-  <title>SLAP ZAYNE UP! 🍑 — Event 2026</title>
+  <meta name="description" content="BOING! พี่หมอเด้งดึ๋ง~ — a playful unofficial fan-made mini game">
+  <title>🍑 BOING! พี่หมอเด้งดึ๋ง~ — Event 2026</title>
   <style>
     :root { color-scheme: dark; --ink:#fff3f2; --soft:#e6cad4; --pink:#ff91b5; --peach:#f8c6aa; --brown:#372333; }
     * { box-sizing:border-box; }
@@ -120,28 +120,25 @@
     </div>
     <div class="hero">
       <div class="heroCopy">
-        <h1>🍑 SLAP <span class="pink">ZAYNE UP!</span></h1>
-        <p class="heroQuestion">How many slaps can Zayne take?</p>
-        <p class="lead"><span>Slap Zayne's Cake and watch it bounce! 👋🍑</span><span>Keep slapping… He might have something to say. 😼</span></p>
+        <h1>🍑 BOING! <span class="pink">พี่หมอเด้งดึ๋ง~</span></h1>
+        <p class="heroQuestion">How many boings can you make?</p>
+        <p class="lead"><span>Tap the peach and watch it bounce! 👆🍑</span><span>Keep tapping… He might have something to say. 😼</span></p>
       </div>
       <section class="playerPanel" aria-label="Player name and score">
         <div class="panelHeading"><span>YOUR PLAYER TITLE</span><span class="testPill" id="phasePill">EARLY ACCESS</span></div>
         <div class="playerControls">
           <input id="playerName" type="text" maxlength="24" autocomplete="nickname" spellcheck="false" placeholder="Your nickname" aria-label="Your nickname">
           <select id="playerPhrase" aria-label="Choose a phrase about Zayne">
-            <option value="slaps">slaps 🍑</option>
+            <option value="taps">taps 👆</option>
             <option value="pokes">pokes 👉</option>
-            <option value="teases">teases 😼</option>
             <option value="pats">pats 💗</option>
-            <option value="tickles">tickles 🪶</option>
-            <option value="bonks">bonks 💥</option>
-            <option value="can't resist">can't resist 🫣</option>
-            <option value="keeps slapping">keeps slapping 👋</option>
+            <option value="cheers for">cheers for 🌟</option>
             <option value="adores">adores ❤️</option>
+            <option value="says hi to">says hi to 👋</option>
           </select>
         </div>
-        <div class="playerTitle" id="playerTitle" aria-live="polite">Someone slaps Zayne</div>
-        <div class="playerScoreRow" aria-live="polite"><span id="scoreLabel">PRACTICE SLAPS 🍑</span><strong id="topScore">0</strong></div>
+        <div class="playerTitle" id="playerTitle" aria-live="polite">Someone taps Zayne</div>
+        <div class="playerScoreRow" aria-live="polite"><span id="scoreLabel">PRACTICE BOINGS 🍑</span><strong id="topScore">0</strong></div>
         <div class="playerHelp" id="playerHelp">เปลี่ยนชื่อและกิมมิคได้ตลอดกิจกรรม · ปิดแท็บแล้วเปิดใหม่ คะแนนยังอยู่ในเบราว์เซอร์เดิม</div>
       </section>
     </div>
@@ -157,7 +154,7 @@
     </section>
     <div class="below">
       <div class="actions">
-        <button class="primary" id="boingBtn" type="button">👋 SLAP ZAYNE!</button>
+        <button class="primary" id="boingBtn" type="button">👆 TAP TO BOING!</button>
         <button class="secondary" id="zoomBtn" type="button" title="ซูมจุดเด้ง">🔍 ซูม</button>
         <button class="secondary" id="soundBtn" type="button" title="ปิดเสียง" aria-label="เปิดหรือปิดเสียง (เปิดเสียงเพื่อทดสอบ)" aria-pressed="true">🔊</button>
         <button class="secondary" id="resetBtn" type="button" title="รีเซ็ตจำนวนครั้ง">↺</button>
@@ -172,8 +169,8 @@
   <!-- Only visible on desktop after the original player panel scrolls off-screen. -->
   <aside class="desktopScoreFloat" id="desktopScoreFloat" aria-hidden="true">
     <div style="min-width:0">
-      <span class="floatLabel" id="floatingScoreLabel">PRACTICE SLAPS 🍑</span>
-      <div class="floatTitle" id="desktopFloatTitle">Someone slaps Zayne</div>
+      <span class="floatLabel" id="floatingScoreLabel">PRACTICE BOINGS 🍑</span>
+      <div class="floatTitle" id="desktopFloatTitle">Someone taps Zayne</div>
     </div>
     <strong class="floatValue" id="desktopFloatValue">0</strong>
   </aside>
@@ -221,7 +218,7 @@
     const OFFICIAL_SCORE_KEY = IS_TEST_PAGE ? 'slap-zayne-up-v10-test-official-score-2026' : 'slap-zayne-up-v10-official-score-2026';
     const NAME_PERSIST_KEY = IS_TEST_PAGE ? 'slap-zayne-up-v10-test-name' : 'slap-zayne-up-v10-name';
     const PHRASE_PERSIST_KEY = IS_TEST_PAGE ? 'slap-zayne-up-v10-test-phrase' : 'slap-zayne-up-v10-phrase';
-    const PHRASES = new Set(['slaps','pokes','teases','pats','tickles','bonks',"can't resist",'keeps slapping','adores']);
+    const PHRASES = new Set(['taps','pokes','pats','cheers for','adores','says hi to']);
     const getSafeCount = value => {
       const n=Number(value);
       return Number.isSafeInteger(n) && n>=0 ? n : 0;
@@ -260,9 +257,9 @@
       canvas.tabIndex = lock ? -1 : 0;
       const configurations = {
         before: ['COMING SOON', 'ยังไม่เปิดให้เล่น · Early Access เริ่ม 23 พ.ย. 2026 (เวลาไทย)', 'WAITING 🍑'],
-        early: ['EARLY ACCESS', '🎮 <strong>EARLY ACCESS · PRACTICE ONLY</strong> · 23–24 พ.ย. ทดลองเล่นได้ตามปกติ แต่ <strong>คะแนนนี้ไม่ใช้แข่งขัน</strong> · เริ่มแข่ง 25 พ.ย. เวลา 04:00 น. (ไทย)', 'PRACTICE SLAPS 🍑'],
-        live: ['UNOFFICIAL EVENT', '🏆 <strong>UNOFFICIAL EVENT</strong> · เริ่มแข่งขันแล้ว! คะแนนเริ่มจาก 0 ไม่รวมรอบทดลอง · ปิด 13 ธ.ค. เวลา 04:00 น. (ไทย)', 'EVENT SLAPS 🍑'],
-        ended: ['EVENT ENDED', '🔒 <strong>EVENT ENDED!</strong> · ปิดรับการจิ้มแล้ว · ชื่อและคะแนนสุดท้ายถูกล็อกไว้สำหรับแคปหน้าจอส่งผล', 'FINAL SLAPS 🍑']
+        early: ['EARLY ACCESS', '🎮 <strong>EARLY ACCESS · PRACTICE ONLY</strong> · 23–24 พ.ย. ทดลองเล่นได้ตามปกติ แต่ <strong>คะแนนนี้ไม่ใช้แข่งขัน</strong> · เริ่มแข่ง 25 พ.ย. เวลา 04:00 น. (ไทย)', 'PRACTICE BOINGS 🍑'],
+        live: ['UNOFFICIAL EVENT', '🏆 <strong>UNOFFICIAL EVENT</strong> · เริ่มแข่งขันแล้ว! คะแนนเริ่มจาก 0 ไม่รวมรอบทดลอง · ปิด 13 ธ.ค. เวลา 04:00 น. (ไทย)', 'EVENT BOINGS 🍑'],
+        ended: ['EVENT ENDED', '🔒 <strong>EVENT ENDED!</strong> · ปิดรับการจิ้มแล้ว · ชื่อและคะแนนสุดท้ายถูกล็อกไว้สำหรับแคปหน้าจอส่งผล', 'FINAL BOINGS 🍑']
       };
       const [label, description, scoreText] = configurations[next];
       phasePill.textContent=label;
@@ -308,7 +305,7 @@
     }
     function refreshPlayerTitle(){
       const name=playerNameInput.value.trim().replace(/\s+/g,' ').slice(0,24) || 'Someone';
-      const phrase=PHRASES.has(playerPhraseSelect.value) ? playerPhraseSelect.value : 'slaps';
+      const phrase=PHRASES.has(playerPhraseSelect.value) ? playerPhraseSelect.value : 'taps';
       playerTitleEl.textContent=`${name} ${phrase} Zayne`;
       floatingScoreTitle.textContent=playerTitleEl.textContent;
       try{
